@@ -1,7 +1,7 @@
 import className from '../style/footer.styl'
 
 export default {
-  data () {
+  data (){
     return {
       msg: 'yuancheng'
     }
