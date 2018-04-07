@@ -1,13 +1,12 @@
 const baseConfig = require('./webpack.config.base')
 const webpackMerge = require('webpack-merge')
 const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HTMLPlugin = require('html-webpack-plugin')
 const path = require('path')
 
 const isDev = process.env.NODE_ENV === 'development'
 const devServer = {
-  port: '9999',
+  port: '8088',
   progress: true,
   overlay: {
     errors: true
@@ -18,15 +17,23 @@ const devServer = {
 const defaultPlugin = [
   new webpack.DefinePlugin({
     'process.env': {
-      NODE_ENV: isDev ? '"development"' : '"production"'
+      NODE_ENV: '"development"'
     }
   }),
-  new HTMLPlugin()
+  new HTMLPlugin({
+    template: path.join(__dirname, 'template.html')
+  })
 ]
 
-const config = isDev ? webpackMerge(baseConfig, {
+const config = webpackMerge(baseConfig, {
+  entry: path.join(__dirname, '../practice/index.js'),
   devtool: '#cheap-module-eval-source-map',
   devServer: devServer,
+  resolve: {
+    alias: {
+      'vue': path.join(__dirname, '../node_modules/vue/dist/vue.esm.js')
+    }
+  },
   module: {
     rules: [
       {
@@ -55,46 +62,6 @@ const config = isDev ? webpackMerge(baseConfig, {
   plugins: defaultPlugin.concat([
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
-  ])
-}) : webpackMerge(baseConfig, {
-  entry: {
-    vendor: ['vue'],
-    bundle: path.join(__dirname, '../src/index.js')
-  },
-  output: {
-    filename: 'js/[name].[chunkhash:8].js'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.styl$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'vue-style-loader',
-          use: [
-            'css-loader',
-            {
-              loader: 'postcss-loader',
-              options: {
-                sourceMap: true
-              }
-            },
-            'stylus-loader'
-          ]
-        })
-
-      }
-    ]
-  },
-  plugins: defaultPlugin.concat([
-    new ExtractTextPlugin('style.[contenthash:8].css'),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: Infinity
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'runtime',
-      minChunks: Infinity
-    })
   ])
 })
 
