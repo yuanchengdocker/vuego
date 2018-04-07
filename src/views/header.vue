@@ -4,7 +4,7 @@
 
 <style lang="stylus" module>
 .header-main
-    font-size 40px
+    font-size 39px
     color red
     text-align center
 </style>
