@@ -53,12 +53,12 @@ const config = isDev ? webpackMerge(baseConfig,{
         ]
     },
     plugins:defaultPlugin.concat([
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin()
+        new webpack.HotModuleReplacementPlugin()
+        // new webpack.NoEmitOnErrorsPlugin()
     ])
 }) : webpackMerge(baseConfig,{
     entry:{
-        vendor:['vue'],
+        // vendor:['vue'],
         bundle:path.join(__dirname,'../src/index.js')
     },
     output:{
@@ -81,20 +81,26 @@ const config = isDev ? webpackMerge(baseConfig,{
                         'stylus-loader'
                     ]
                 })
-                
+
             }
         ]
     },
+    optimization:{
+      splitChunks:{
+        chunks:"all" //默认将node_module文件打包到一起
+      },
+      runtimeChunk:true
+    },
     plugins:defaultPlugin.concat([
-        new ExtractTextPlugin('style.[contenthash:8].css'),
-        new webpack.optimize.CommonsChunkPlugin({
-            name:'vendor',
-            minChunks:Infinity
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name:'runtime',
-            minChunks:Infinity
-        })
+        new ExtractTextPlugin('style.[contentHash:8].css')
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name:'vendor',
+        //     minChunks:Infinity
+        // }),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name:'runtime',
+        //     minChunks:Infinity
+        // })
     ])
 })
 

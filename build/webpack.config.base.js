@@ -4,6 +4,7 @@ const vueloaderConfig = require('./vueloader.config')
 const isDev = process.env.NODE_ENV === 'development'
 
 let config = {
+    mode: process.env.NODE_ENV || "production",
     entry:{
         bundle:path.join(__dirname,'../src/index.js')
     },
