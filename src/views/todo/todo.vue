@@ -19,6 +19,7 @@
         @filterChange="filterChange"
         @clearAllCompleted="clearAllCompleted"
     />
+    <!-- <router-view/> -->
   </div>
 </template>
 <script>
@@ -26,6 +27,18 @@ import Item from './item.vue'
 import Tabs from './tabs.vue'
 var id = 0
 export default {
+  beforeRouteEnter: (to, from, next) => {
+    console.log('before route enter', to)
+    next(vm => {
+      console.log('before route enter vm.id', vm.id)
+    })
+  },
+  beforeRouteUpdate: (to, from, next) => {
+    console.log('before route update', to)
+    next(vm => {
+      // console.log('before route enter vm.id', vm.id)  //无回调函数
+    })
+  },
   props: ['id'],
   mounted () {
     console.log(this.id)

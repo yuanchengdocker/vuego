@@ -4,7 +4,9 @@
         </div>
         <div class="main-content">
             <Header/>
-            <router-link to="/app">app</router-link>
+            <p>{{count}}</p>
+            <router-link to="/app/1234">app123</router-link>
+            <router-link to="/app/567">app567</router-link>
             <router-link to="/login">login</router-link>
             <transition name="fade">
               <router-view/>
@@ -20,6 +22,18 @@ import Footer from './views/footer.jsx'
 export default {
   components: {
     Header, Footer
+  },
+  mounted () {
+    let i = 0
+    console.log(this.$store)
+    setInterval(() => {
+      this.$store.commit('updateCount', i++)
+    }, 1000)
+  },
+  computed: {
+    count () {
+      return this.$store.state.count
+    }
   }
 }
 </script>
