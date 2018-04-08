@@ -12,7 +12,10 @@ const devServer = {
   overlay: {
     errors: true
   },
-  hot: true
+  hot: true,
+  historyApiFallback: {
+    index: '/public/index.html'
+  }
   // open:true
 }
 const defaultPlugin = [
@@ -21,7 +24,9 @@ const defaultPlugin = [
       NODE_ENV: isDev ? '"development"' : '"production"'
     }
   }),
-  new HTMLPlugin()
+  new HTMLPlugin({
+    template: path.join(__dirname, 'template.html')
+  })
 ]
 
 const config = isDev ? webpackMerge(baseConfig, {
@@ -33,14 +38,15 @@ const config = isDev ? webpackMerge(baseConfig, {
         test: /\.styl$/,
         use: [
           'vue-style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              module: true,
-              localIdentName: isDev ? '[path][name]---[local]---[hash:base64:5]' : '[hash:base64:5]',
-              camelCase: true
-            }
-          },
+          'css-loader',
+          // {
+          //   loader: 'css-loader',
+          //   options: {
+          //     module: true,
+          //     localIdentName: isDev ? '[path][name]---[local]---[hash:base64:5]' : '[hash:base64:5]',
+          //     camelCase: true
+          //   }
+          // },
           {
             loader: 'postcss-loader',
             options: {

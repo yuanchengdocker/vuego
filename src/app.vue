@@ -4,7 +4,11 @@
         </div>
         <div class="main-content">
             <Header/>
-            <Todo/>
+            <router-link to="/app">app</router-link>
+            <router-link to="/login">login</router-link>
+            <transition name="fade">
+              <router-view/>
+            </transition>
             <Footer/>
         </div>
   </div>
@@ -13,10 +17,9 @@
 <script>
 import Header from './views/header.vue'
 import Footer from './views/footer.jsx'
-import Todo from './views/todo/todo.vue'
 export default {
   components: {
-    Header, Footer, Todo
+    Header, Footer
   }
 }
 </script>
@@ -42,6 +45,7 @@ export default {
         height 100%
         z-index 11
         text-align center
+
 </style>
 
 

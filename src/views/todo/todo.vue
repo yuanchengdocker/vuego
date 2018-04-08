@@ -1,13 +1,13 @@
 <template>
   <div class="todo-container">
-      <input 
+      <input
         type="text"
         class="todo-input"
         autofocus=true
         placeholder="请输入您接下来要做的事！"
         @keyup.enter="addTodo"
     >
-    <Item 
+    <Item
         v-for="todo in showTodos"
         :key="todo.id"
         :todo="todo"
@@ -26,6 +26,10 @@ import Item from './item.vue'
 import Tabs from './tabs.vue'
 var id = 0
 export default {
+  props: ['id'],
+  mounted () {
+    console.log(this.id)
+  },
   data () {
     return {
       todos: [],

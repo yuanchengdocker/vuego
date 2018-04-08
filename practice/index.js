@@ -1,3 +1,4 @@
 // import './instance'
 // import './lifecys'
-import './compute'
+// import './compute'
+import './component/render'
