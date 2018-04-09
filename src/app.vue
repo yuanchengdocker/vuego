@@ -4,7 +4,8 @@
         </div>
         <div class="main-content">
             <Header/>
-            <p>{{count}}</p>
+            <p>{{fullName}}  {{counter}}</p>
+            <p>{{text}} {{fiveText}}  c {{textc}}</p>
             <router-link to="/app/1234">app123</router-link>
             <router-link to="/app/567">app567</router-link>
             <router-link to="/login">login</router-link>
@@ -19,21 +20,63 @@
 <script>
 import Header from './views/header.vue'
 import Footer from './views/footer.jsx'
+import {
+  mapState,
+  mapGetters,
+  mapActions,
+  mapMutations
+} from 'vuex'
 export default {
   components: {
     Header, Footer
   },
   mounted () {
-    let i = 0
+    // let i = 0
+    // this.$store.dispatch('updateCountAsync', {
+    //   num: 5,
+    //   time: 5000
+    // })
+    this.updateCountAsync({num: 5, time: 5000})
     console.log(this.$store)
-    setInterval(() => {
-      this.$store.commit('updateCount', i++)
-    }, 1000)
+    // setInterval(() => {
+    //   this.$store.commit('updateCount', i++)
+    // }, 1000)
+    // setInterval(() => {
+    //   this['a/addCount']()
+    //   this.updateCount({num: i++})
+    //   // this['a/addText']()
+    // }, 1000)
+    // this.aText(1000)
+  },
+  methods: {
+    ...mapActions(['updateCountAsync', 'a/addCount', 'a/addText']),
+    ...mapMutations({
+      updateCount: 'updateCount',
+      aText: 'a/updateText'
+    })
   },
   computed: {
-    count () {
-      return this.$store.state.count
-    }
+    // text () {
+    //   return this.$store.state.a.text
+    // },
+    // fullName () {
+    //   return this.$store.getters.fullName
+    // },
+    ...mapGetters({
+      fullName: 'fullName',
+      fiveText: 'a/fiveText'
+    }),
+    // count () {
+    //   return this.$store.state.count
+    // }
+    ...mapState({
+      counter: state => {
+        console.log(state)
+        return state.count
+      },
+      text: state => state.a.text,
+      textc: state => state.c.textc
+    })
   }
 }
 </script>
