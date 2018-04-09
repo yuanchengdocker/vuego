@@ -4,7 +4,7 @@ var fs = require('fs')// 引入文件读取模块
 var documentRoot = __dirname
 // 需要访问的文件的存放目录（项目所在位置的文件夹路径）
 
-var server = http.createServer(function (req, res) {
+http.createServer(function (req, res) {
   var url = req.url
   // 客户端输入的url，例如如果输入localhost:8888/index.html
   // 那么这里的url == /index.html
