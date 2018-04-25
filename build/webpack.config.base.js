@@ -10,7 +10,7 @@ let config = {
   output: {
     filename: 'js/[name].[hash:8].js',
     path: path.join(__dirname, '../dist'),
-    publicPath: '/public/'
+    publicPath: '/'
   },
   module: {
     rules: [
