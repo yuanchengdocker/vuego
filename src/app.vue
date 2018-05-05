@@ -62,6 +62,7 @@ export default {
     // fullName () {
     //   return this.$store.getters.fullName
     // },
+    // 对state更改拼接后的值返回
     ...mapGetters({
       fullName: 'fullName',
       fiveText: 'a/fiveText'

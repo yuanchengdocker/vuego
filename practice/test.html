@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    html,body{
+      width: 100%;
+      height: 100%;
+    }
+    /* .layout.float article div{
+      min-height: 500px;
+    }
+    .left{
+      width: 300px;
+      background-color: red;
+      float: left;
+    }
+    .right{
+      width: 300px;
+      background-color: yellow;
+      float: right;
+    }
+    .center{
+      background-color: aquamarine
+    } */
+
+  </style>
+</head>
+<body>
+  <section class="layout float">
+    <style>
+      .grid-box{
+        display: grid;
+        grid-template-columns: 300px auto 300px;
+        grid-template-rows: 100px 200px;
+      }
+      .grid-box .left{
+        background-color: red;
+        grid-column-start: 1;
+        grid-column-end: 4;
+      }
+      .grid-box .right{
+        background-color: yellow;
+      }
+      .grid-box .center{
+        background-color: aquamarine
+      }
+    </style>
+    <article class="grid-box">
+        <div class="left"></div>
+        <div class="center">
+            <h1>test</h1>
+            1.这是三滥布局的测试
+          </div>
+        <div class="right"></div>
+    </article>
+  </section>
+
+  <section class="layout float">
+      <style>
+        .flex-box{
+          display: flex;
+        }
+        .flex-box .left{
+          width: 300px;
+          background-color: red
+        }
+        .flex-box .center{
+          flex: 1;
+          background-color: green
+        }
+        .flex-box .right{
+          width: 300px;
+          background-color: blue
+        }
+      </style>
+      <article class="flex-box">
+          <div class="left"></div>
+          <div class="center">
+              <h1>test</h1>
+              1.这是三滥布局的测试
+            </div>
+          <div class="right"></div>
+      </article>
+    </section>
+
+    <section class="layout float">
+        <style>
+          .table-box{
+            width: 100%;
+            display: table;
+          }
+          .table-box div{
+            display: table-cell
+          }
+          .table-box .left{
+            width: 300px;
+            background-color: red
+          }
+          .table-box .center{
+            background-color: green
+          }
+          .table-box .right{
+            width: 300px;
+            background-color: blue
+          }
+        </style>
+        <article class="table-box">
+            <div class="left"></div>
+            <div class="center">
+                <h1>test</h1>
+                1.这是三滥布局的测试
+              </div>
+            <div class="right"></div>
+        </article>
+      </section>
+
+      <section class="sec">
+        <style>
+          .sec{
+            background:yellow;
+            margin-bottom:25px;
+          }
+          .sec .child{
+            background:red;
+            height: 100px;
+            margin-top: 10px;
+          }
+        </style>
+        <div class="child"></div>
+      </section>
+      <div class="hah">
+      <section class="sec2">
+          <style>
+            .hah{
+              overflow: hidden;
+            }
+            .sec2{
+              background:yellow;
+              margin-top:20px;
+            }
+          </style>
+          <p>dlslfal</p>
+        </section>
+      </div>
+
+      <section class="layfloat">
+        <style>
+          .layfloat .left{
+            float:left;
+            background:red;
+            width: 200px;
+            height: 100px;
+          }
+          .layfloat .content{
+            overflow: hidden;
+            background:blue;
+            height: 110px;
+          }
+        </style>
+        <article>
+          <div class="left"></div>
+          <div class="content"></div>
+        </article>
+      </section>
+
+      <script>
+        /*
+        * eslint-disable
+        */
+        function quickSort (arr) {
+          if (!arr || arr.length <= 0) return []
+          var floorI = parseInt(arr.length / 2)
+          var floorV = arr.split(floorI, 1)
+          var left = []
+          var right = []
+          for (var i = 0; i < arr.length; i++) {
+            if (arr[i] <= floorV) {
+              left.push(arr[i])
+            } else {
+              right.push(arr[i])
+            }
+          }
+          return quickSort(left).contact(floorV, quickSort(right))
+        }
+        var arr = [4, 1, 44, 2, 3, 3, 8]
+        quickSort(arr)
+
+        function selectSort (arr) {
+          if (!arr || !(arr instanceof Array) || arr.length <= 0) {
+            return []
+          }
+          var len = arr.length
+          var temp, minIndex
+          for (var i = 0; i < len - 1; i++) {
+            minIndex = i
+            for (var j = i + 1; j < len; j++) {
+              if (arr[j] < arr[minIndex]) {
+                minIndex = j
+              }
+            }
+            temp = arr[i]
+            arr[i] = arr[minIndex]
+            arr[minIndex] = temp
+          }
+          return arr
+        }
+        var arr = [4, 1, 44, 2, 3, 3, 8]
+        selectSort(arr)
+      </script>
+</body>
+</html>

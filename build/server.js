@@ -37,3 +37,52 @@ http.createServer(function (req, res) {
 }).listen(8081)
 
 console.log('服务器开启成功')
+
+function Person () {
+  this.name = 'es3'
+  this.sex = 'male'
+  this.get = function (key) {
+    return this[key]
+  }
+  this.set = function (key, value) {
+    if (key !== 'sex') {
+      this[key] = value
+    } else {
+      throw Error('cuole')
+    }
+  }
+}
+var person = new Person()
+person.set('sex', 'female')
+
+var person = {
+  name: 'es5'
+}
+
+Object.defineProperties(person, 'sex', {
+  whriteable: false,
+  value: 'male'
+})
+console.log(person.sex)
+person.sex = 'female'
+
+
+var person = {
+  name: 'es5',
+  sex: 'male'
+}
+
+var p = new Proxy(person, {
+  get: (obj, key) => {
+    return obj[key]
+  },
+  set: (obj, key, newValue) => {
+    if (key !== 'sex') {
+      obj[key] = newValue
+    } else {
+      throw Error('dd')
+    }
+  }
+})
+console.log(p.name)
+p.sex = 'female'

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin:0;
+    }
+    html,body{
+      width: 100%;
+      height: 100%;
+    }
+    .layout{
+      margin-right: 10px;
+      display: inline-block;
+      height: 100%;
+      width: 100px;
+      float: left;
+    }
+    .layout article{
+      width: 100%;
+      height: 100%;
+    }
+    .layout article div{
+      width: 100%
+    }
+  </style>
+</head>
+<body>
+  <section class="layout float">
+    <style>
+      .layout.float .top{
+        float: left;
+        height: 50px;
+        background: yellow;
+      }
+      .layout.float .bottom{
+        float: left;
+        height: 50px;
+        background: blue;
+      }
+      .layout.float .content{
+        height: 100%;
+        background: red;
+        margin-bottom: -50px;
+      }
+    </style>
+    <article>
+      <div class="top"></div>
+
+      <div class="content">
+        <h1>这是浮动布局</h1>
+      </div>
+      <div class="bottom"></div>
+    </article>
+  </section>
+
+  <section class="layout position">
+    <style>
+      .layout.position article{
+        position: relative;
+      }
+      .layout.position .top{
+        height: 50px;
+        position: absolute;
+        top: 0;
+        background: yellow
+      }
+      .layout.position .bottom{
+        height: 50px;
+        position: absolute;
+        bottom: 0;
+        background: blue;
+      }
+      .layout.position .content{
+        position: absolute;
+        top: 50px;
+        bottom: 50px;
+        background: red;
+      }
+    </style>
+    <article>
+      <div class="top"></div>
+      <div class="content">
+        <h1>这是绝对定位布局</h1>
+      </div>
+      <div class="bottom"></div>
+    </article>
+  </section>
+
+  <section class="layout flex">
+    <style>
+      .layout.flex article{
+        display: flex;
+        flex-direction: column;
+      }
+      .layout.flex .top{
+        height: 50px;
+        background: yellow;
+      }
+      .layout.flex .content{
+        flex: 1;
+        background: red
+      }
+      .layout.flex .bottom{
+        height: 50px;
+        background: blue;
+      }
+    </style>
+    <article>
+      <div class="top"></div>
+      <div class="content"></div>
+      <div class="bottom"></div>
+    </article>
+  </section>
+
+  <section class="layout table">
+    <style>
+      .layout.table article{
+        display: table;
+      }
+      .layout.table .top{
+        display: table-row;
+        height: 50px;
+        background: yellow;
+      }
+      .layout.table .content{
+        display: table-row;
+        background: red;
+      }
+      .layout.table .bottom{
+        display: table-row;
+        background:blue;
+        height:50px;
+      }
+    </style>
+    <article>
+      <div class="top">1</div>
+      <div class="content">
+        <h1>这是table布局方式</h1>
+      </div>
+      <div class="bottom">2</div>
+    </article>
+  </section>
+
+  <section class="layout grid">
+    <style>
+      .layout.grid article{
+        display: grid;
+        grid-template-rows: 50px auto 50px;
+        grid-template-columns: 100%;
+      }
+      .layout.grid .top{
+        background: yellow
+      }
+      .layout.grid .content{
+        background:red;
+      }
+      .layout.grid .bottom{
+        background:blue;
+      }
+    </style>
+    <article>
+      <div class="top"></div>
+      <div class="content">
+        <h1>这是grid格珊布局</h1>
+      </div>
+      <div class="bottom"></div>
+    </article>
+  </section>
+</body>
+</html>
