@@ -87,7 +87,7 @@ const config = isDev ? webpackMerge(baseConfig, {
   },
   optimization: {
     splitChunks: {
-      chunks: 'all'
+      chunks: 'all' // 默认将node_module文件打包到一起
     },
     runtimeChunk: true
   },
