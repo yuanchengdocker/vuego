@@ -14,7 +14,7 @@ const devServer = {
   },
   hot: true,
   historyApiFallback: {
-    index: '/public/index.html'
+    index: '/index.html'
   }
   // open:true
 }
@@ -63,6 +63,7 @@ const config = isDev ? webpackMerge(baseConfig, {
     new webpack.NoEmitOnErrorsPlugin()
   ])
 }) : webpackMerge(baseConfig, {
+  devtool: false,
   entry: {
     vendor: ['vue'],
     bundle: path.join(__dirname, '../src/index.js')
@@ -77,7 +78,13 @@ const config = isDev ? webpackMerge(baseConfig, {
         use: ExtractTextPlugin.extract({
           fallback: 'vue-style-loader',
           use: [
-            'css-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                // css代码压缩
+                minimize: true
+              }
+            },
             {
               loader: 'postcss-loader',
               options: {
@@ -100,7 +107,8 @@ const config = isDev ? webpackMerge(baseConfig, {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'runtime',
       minChunks: Infinity
-    })
+    }),
+    new webpack.optimize.UglifyJsPlugin()
   ])
 })
 
